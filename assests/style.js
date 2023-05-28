@@ -56,6 +56,9 @@ var StartBtn = document.getElementById("Start");
 var firstEl = document.getElementById("First-page");
 var timeEl = document.getElementById("time")
 var RestartEl = document.getElementById("Restart");
+var feedbackEl = document.getElementById("feedback")
+var feedbackEl1 = document.getElementById("feedback1")
+var feedbackEl2 = document.getElementById("feedback2")
   
     // QuestionEl.style.display = "none";
     // Answerbuttons.style.display = "none";
@@ -76,18 +79,22 @@ function FirstPage(){
    timerInterval = setInterval(function(){
     time--;
     timeEl.textContent = time;
-    if (time <= 0) {
-      stopQuiz();
+    if (time == 0) {
+      clearInterval(timerInterval);
+      ShowScore();
+    
+    
     }
    }, 1000)
-
+console.log("time")
 }
 
 // Start Quiz
 
   function startQuiz(){
-    currentQuestionIndex = 0;
- score = 0;
+    var currentQuestionIndex = 0;
+ var score = 0;
+ var time = 60;
  
  showQuestion();
   }
@@ -124,24 +131,24 @@ function resetState(){
     function selectAnswer(e) {
       var selectedbtn = e.target;
       var isCorrect = selectedbtn.dataset.correct === "true";
-    
+    console.log("check")
       if (isCorrect) {
         selectedbtn.classList.add("correct");
-        
         score++;
+
       } else {
         selectedbtn.classList.add("incorrect");
-       
-        time -= 5;
+        time -= 2;
       }
       
     }
+Answerbuttons.addEventListener("click", selectAnswer);
 
     
 function ShowScore(){
 resetState();
-QuestionEl.innerHTML= "Enter Initials to get Result";
-Answerbuttons.innerHTML = `You scored ${score} out of ${questions.length}!`;
+ var QuestRes= QuestionEl.innerHTML= "Enter Initials to get Result";
+ var AnsBtn= Answerbuttons.innerHTML = `You scored ${score} out of ${questions.length}!`;
 }
 
 
@@ -167,9 +174,5 @@ Answerbuttons.addEventListener("click" , ()=>{
     }
     });
 
-    
-  function stopQuiz(){
-    clearInterval(timerInterval);
-  }
 
   RestartEl.addEventListener("click", startQuiz);

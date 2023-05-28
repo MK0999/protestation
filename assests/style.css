@@ -113,16 +113,6 @@ h1{
 }
 
 
-
-.correct {
-    background-color: rgb(18, 224, 18);
-    color: black;
-}
-
-.incorrect {
-    background-color: rgb(221, 8, 8);
-}
-
 #Restart{
 margin-left: 45%;
     margin-top: 5%;
@@ -138,4 +128,8 @@ margin-left: 45%;
 }
 .correct::after{
     content: correct;
+}
+.hiding{
+    margin-top: 2%;
+    display: none;
 }
