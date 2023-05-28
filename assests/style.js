@@ -1,74 +1,175 @@
 var questions = [ 
     {
-    Num: 1,
-    Quest:  "which of the following is not javascript data types?",
-Option: [
-    " Null type" ,
-       " Undefined type" ,
-        "Number type" ,
-        "All of the mentioned" ,
+    
+    question:  "which of the following is not javascript data types?",
+    answer: [
+        {text:"Null type", correct:false},
+    {text:"Undefined type" ,correct:false},
+    {text: "Number type" ,correct:false},
+    {text:"All of the mentioned" ,correct:true},
 ],
-
-Answer: " All of the mentioned"
 },
 {
-Num: 2,
-Quest: "Which of the following can be used to call a javaScript code Snippet",
-Option: [
-    "Function/Method",
-          "Preprocessor",
-          "Triggering event",
-          "RMI"
+question: "Which of the following can be used to call a javaScript code Snippet",
+answer: [
+    {text:"Function/Method", correct:true},
+    {text:"Preprocessor", correct:false},
+    {text:"Triggering event", correct:false},
+    {text:"RMI", correct:false},
 ],
-Answer: "Function/Method",
 },
 {
-    Num : 3,
-    Quest : "Javascript is an _______ language?",
-    Option :
-    ["Object-orientsd",
-              "Object-based",
-              "Procedural",
-              "None of above" 
+    
+    question : "Javascript is an _______ language?",
+    answer :
+    [
+        {text:"Object-orientsd", correct:true},
+        {text:"Object-based", correct:false},
+        {text:"Procedural", correct:false},
+        {text:"None of above", correct:false}, 
 ],
-     Answer : "Object-Oriented " 
-} ,       
+    } ,       
  {
-    Num : 4,
-    Quest: "Upon encountering empty statements, what does the Javascript Interpreter do?",
-    Option : [
-        "Throws an error",
-    "Ignores the statement",
-    "Gives a warning",
-    "None of above"
-    ],
-    Answer :"Ignores the statement",
- },
- {
-    Num: 5,
-    Quest : "  What keyword is used to check whether a given property is valid or not?",
-    Option :[
-        "in",
-    "is in",
-    "exists",
-    "lies"
-    ],
-     Answer: "in"
 
-},
+    question: "Upon encountering empty statements, what does the Javascript Interpreter do?",
+    answer: [
+        {text: "Throws an error", correct:false},
+        {text:"Ignores the statement", correct:true},
+        {text:"Gives a warning", correct:false},
+        {text:"None of above", correct:false},
+    ],
+    },
+ {
+    question : "  What keyword is used to check whether a given property is valid or not?",
+    answer:[
+        {text:"in", correct:true},
+        {text:"is in", correct:false},
+        {text:"exists", correct:false},
+        {text:"lies", correct:false},
+    ],
+    },
 ]  
-var Quest_ion = document.getElementById("questions");
-var Opt_ion = document.getElementById("options");
-var Ans_wer = document.getElementById("answer");
-var Start_btn = document.getElementById("strt-btn");
-var Nxt_btn = document.querySelectorAll("next");
+var QuestionEl = document.getElementById("question");
+var Answerbuttons= document.getElementById("answer-buttons");
+var QuizEl= document.getElementById("quiz");
+var StartBtn = document.getElementById("Start");
+var firstEl = document.getElementById("First-page");
+var timeEl = document.getElementById("time")
+var RestartEl = document.getElementById("Restart");
+  
+    // QuestionEl.style.display = "none";
+    // Answerbuttons.style.display = "none";
+var currentQuestionIndex = 0;
+var score = 0;
+var timerInterval;
+var time = 60
+console.log("started")
+RestartEl.classList.add("hide")
+StartBtn.addEventListener("click", FirstPage);
+function FirstPage(){
+  console.log("started")
+  
+  QuizEl.classList.remove("hide");
+  firstEl.classList.add("hide");
+   showQuestion();
+
+   timerInterval = setInterval(function(){
+    time--;
+    timeEl.textContent = time;
+    if (time <= 0) {
+      stopQuiz();
+    }
+   }, 1000)
+
+}
+
+// Start Quiz
+
+  function startQuiz(){
+    currentQuestionIndex = 0;
+ score = 0;
+ 
+ showQuestion();
+  }
+
+  // To enter question
+  function showQuestion(){
+    resetState();
+    RestartEl.classList.add("hide")
+    var currentQuestion = questions[currentQuestionIndex];
+    var questionNo = currentQuestionIndex + 1;
+    QuestionEl.innerHTML = questionNo + '.'+ currentQuestion.question;
     
+    currentQuestion.answer.forEach(answer => {
+    var button = document.createElement("button");
+    button.innerHTML= answer.text;
+    button.classList.add("btn");
+    Answerbuttons.appendChild(button);
+    if(answer.correct){
+      button.dataset.correct= answer.correct;
+    }
+    button.addEventListener("click" , selectAnswer);
+    });
+  }
+
+  // to remove already exixting answers
+function resetState(){
+  RestartEl.classList.remove("hide")
+  while(Answerbuttons.firstChild){
+    Answerbuttons.removeChild(Answerbuttons.firstChild);
+  }
+}
+
+// Select answer from options
+    function selectAnswer(e) {
+      var selectedbtn = e.target;
+      var isCorrect = selectedbtn.dataset.correct === "true";
     
-    
+      if (isCorrect) {
+        selectedbtn.classList.add("correct");
+        
+        score++;
+      } else {
+        selectedbtn.classList.add("incorrect");
+       
+        time -= 5;
+      }
       
+    }
+
     
-    
-    
-    
+function ShowScore(){
+resetState();
+QuestionEl.innerHTML= "Enter Initials to get Result";
+Answerbuttons.innerHTML = `You scored ${score} out of ${questions.length}!`;
+}
 
 
+// next button for next question
+function handleNextButton(){
+  currentQuestionIndex++ ;
+  if(currentQuestionIndex < questions.length){
+  showQuestion();
+}
+else{
+   ShowScore()
+}
+}
+
+//to get next question after clicking nxt
+Answerbuttons.addEventListener("click" , ()=>{
+      if(currentQuestionIndex < questions.length){
+      handleNextButton()
+    }
+    else
+    {
+      startQuiz();
+    }
+    });
+
+    
+  function stopQuiz(){
+    clearInterval(timerInterval);
+  }
+
+  RestartEl.addEventListener("click", startQuiz);

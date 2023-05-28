@@ -3,6 +3,17 @@
     padding: 0;
     margin: 0;
 
+
+
+}
+
+.app {
+    background:#fff;
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto 0;
+    border-radius: 10px;
+    padding: 30px;
 }
 
 
@@ -15,11 +26,116 @@
     align-content: center;
 }
 
-#strt-btn{
+
+/*#strt-btn{
     width: 100%;
     height: auto;
     display: flex;
     width: 10%;
     justify-content: center;
     align-content: center;
+}*/
+header{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    
+
+    
+}
+h1{
+    font-size: 35px;
+    border-bottom: 15px;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-bottom: 2px solid black;
+}
+#question{
+    font-size: 30px;
+}
+ .btn {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 1% auto;
+    margin-top: 2%;
+    
+
+}
+.btn{
+    background-color: rgb(130, 91, 165);
+    color: #fff;
+    font-size: 30px;
+    border: 1px solid;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 3sec;
+    padding: auto;
+
+}
+#time{
+    display: flex;
+    justify-content: end;
+    align-content: end;
+    font-size: 20px;
+}
+.btn:hover{
+    background-color: rgb(34, 8, 59);
+    
+
+}
+#Start {
+    background-color: rgb(68, 68, 158);
+    color: #fff;
+    cursor: pointer;
+    
+}
+#Start {
+    margin-left: 45%;
+    margin-top: 5%;
+    padding: 1rem 2rem ;
+    font-size: 20px;
+    border-radius: 10px;
+
+}
+
+.para{
+    font-size: 20px;
+}
+
+.hide{
+    display: none;
+}
+
+#Start:hover{
+    background-color: rgb(20, 45, 100);
+}
+
+
+
+.correct {
+    background-color: rgb(18, 224, 18);
+    color: black;
+}
+
+.incorrect {
+    background-color: rgb(221, 8, 8);
+}
+
+#Restart{
+margin-left: 45%;
+    margin-top: 5%;
+    padding: 1rem 2rem ;
+    font-size: 20px;
+    border-radius: 10px;
+}
+#Restart{
+    background-color: rgb(68, 68, 158);
+    color: #fff;
+    cursor: pointer;
+    
+}
+.correct::after{
+    content: correct;
 }

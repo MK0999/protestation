@@ -1,27 +1,44 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./assests/style.css" />
-    <title>MCQ</title>
-    <div class="quizz">
-        <h1 class ="heading" >Competition</h1>
-        <button id="strt-btn">Start</button>
 
-        <body>
-            <div id="questions" ></div>
-            <div id ="options"></div>
-               <!--- <ul id="select"></ul>-->
-                  <!----  <li type="radio" name="option" value="1" id = "option-1"><label for = "option-1" id= "option-1-label"></label></li>
-                    <li type="radio" name="option" value="2" id = "option-2"><label for = "option-2" id= "option-2-label"></label></li>
-                    <li type="radio" name="option" value="3" id = "option-3"><label for = "option-3" id= "option-3-label"></label></li>
-                    <li type="radio" name="option" value="4" id = "option-4"><label for = "option-4" id= "option-4-label"></label></li>-->
-                
-                <div id="answer"></div>
-                <button class="next">Next</button>
-            </div>
-              <script src="./assests/script.js"></script>
-        </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="./assests/style.css" />
+  <script src="./assests/jquery-3.7.0.js"></script>
+  <title>MCQ</title>
+
+
+
+  <header>View Highest Score</header>
+  <h2 id="time">Time Left</h2>
+
+<body>
+  <div class="app">
+    <div id="First-page">
+      <h1>Coding Quiz Challenge</h1>
+
+      <p class="para"> Try to answer all questions. If any answer is wrong time will be deducted by 10 sec. Enter your
+        initials to save your marks.</p>
+      <div>
+        <button id="Start">Start Quiz</button>
+      </div>
     </div>
+    <div id="quiz" class="hide">
+      <h3 id="question">question here</h3>
+      <div id="answer-buttons">
+        <button class="btn"></button>
+        <button class="btn"></button>
+        <button class="btn"></button>
+        <button class="btn"></button>
+      </div>
+
+  </div>
+  <div>
+    <button id="Restart" class="hide">Restart</button>
+</div>
+  </div>
+  <script src="./assests/style.js"></script>
+</body>
+</div>
