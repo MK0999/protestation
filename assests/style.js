@@ -92,9 +92,9 @@ console.log("time")
 // Start Quiz
 
   function startQuiz(){
-    var currentQuestionIndex = 0;
- var score = 0;
- var time = 60;
+ currentQuestionIndex = 0;
+  score = 0;
+ time = 60;
  
  showQuestion();
   }
