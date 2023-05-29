@@ -60,7 +60,8 @@ var feedbackEl = document.getElementById("feedback")
 var feedbackEl1 = document.getElementById("feedback1")
 var feedbackEl2 = document.getElementById("feedback2")
   var initialEl = document.getElementById("initials");
-  var SubmitEl = document.querySelectorAll("Submit");
+  var SubmitEl = document.getElementById("Submit");
+ var initialInputEl = document.getElementById("initial")
     // QuestionEl.style.display = "none";
     // Answerbuttons.style.display = "none";
 var currentQuestionIndex = 0;
@@ -191,14 +192,14 @@ Answerbuttons.addEventListener("click" , ()=>{
     }
     });
 
-    SubmitEl.addEventListener("click".function());
+    SubmitEl.addEventListener("click", enterInitial);
     function enterInitial(event){
       event.preventDefault();
-      var initial = initialEl.value ;
+      var initial = initialInputEl.value ;
       localStorage.setitem("initial" , JSON.stringify(initial));
      var savedInitial= JSON.parse(localStorage.getItem("initial"));
     if(savedScore !== null){
-      initialEl.innerHTML = "savedInitial";
+      initialInputEl.innerHTML = "savedInitial";
     }
      
    
