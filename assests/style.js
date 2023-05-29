@@ -59,7 +59,8 @@ var RestartEl = document.getElementById("Restart");
 var feedbackEl = document.getElementById("feedback")
 var feedbackEl1 = document.getElementById("feedback1")
 var feedbackEl2 = document.getElementById("feedback2")
-  
+  var initialEl = document.getElementById("initials");
+  var SubmitEl = document.querySelectorAll("Submit");
     // QuestionEl.style.display = "none";
     // Answerbuttons.style.display = "none";
 var currentQuestionIndex = 0;
@@ -68,6 +69,7 @@ var timerInterval;
 var time = 60
 console.log("started")
 RestartEl.classList.add("hide")
+initialEl.classList.add("hide");
 StartBtn.addEventListener("click", FirstPage);
 function FirstPage(){
   console.log("started")
@@ -79,13 +81,14 @@ function FirstPage(){
    timerInterval = setInterval(function(){
     time--;
     timeEl.textContent = time;
-    if (time == 0) {
+    if (time <= 0) {
       clearInterval(timerInterval);
+
       ShowScore();
     
     
     }
-   }, 1000)
+   }, 1000);
 console.log("time")
 }
 
@@ -95,14 +98,20 @@ console.log("time")
  currentQuestionIndex = 0;
   score = 0;
  time = 60;
+
+ 
+FirstPage();
+
+
  
  showQuestion();
-  }
+}
 
   // To enter question
   function showQuestion(){
     resetState();
     RestartEl.classList.add("hide")
+    initialEl.classList.add("hide");
     var currentQuestion = questions[currentQuestionIndex];
     var questionNo = currentQuestionIndex + 1;
     QuestionEl.innerHTML = questionNo + '.'+ currentQuestion.question;
@@ -122,6 +131,7 @@ console.log("time")
   // to remove already exixting answers
 function resetState(){
   RestartEl.classList.remove("hide")
+  initialEl.classList.remove("hide");
   while(Answerbuttons.firstChild){
     Answerbuttons.removeChild(Answerbuttons.firstChild);
   }
@@ -135,10 +145,15 @@ function resetState(){
       if (isCorrect) {
         selectedbtn.classList.add("correct");
         score++;
+        feedbackEl1.textContent="Right";
+        feedbackEl1.style.color= "green";
 
       } else {
         selectedbtn.classList.add("incorrect");
         time -= 2;
+        feedbackEl1.textContent = "Wrong!"
+        feedbackEl1.style.color= "red";
+
       }
       
     }
@@ -147,8 +162,10 @@ Answerbuttons.addEventListener("click", selectAnswer);
     
 function ShowScore(){
 resetState();
- var QuestRes= QuestionEl.innerHTML= "Enter Initials to get Result";
- var AnsBtn= Answerbuttons.innerHTML = `You scored ${score} out of ${questions.length}!`;
+var QuestRes= QuestionEl.innerHTML= `You scored ${score} out of ${questions.length}!`;
+var AnsBtn= Answerbuttons.innerHTML ="Enter intials to submit score";
+initialEl.classList.remove("hide");
+
 }
 
 
@@ -173,6 +190,19 @@ Answerbuttons.addEventListener("click" , ()=>{
       startQuiz();
     }
     });
+
+    SubmitEl.addEventListener("click".function());
+    function enterInitial(event){
+      event.preventDefault();
+      var initial = initialEl.value ;
+      localStorage.setitem("initial" , JSON.stringify(initial));
+     var savedInitial= JSON.parse(localStorage.getItem("initial"));
+    if(savedScore !== null){
+      initialEl.innerHTML = "savedInitial";
+    }
+     
+   
+  }
 
 
   RestartEl.addEventListener("click", startQuiz);

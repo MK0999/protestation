@@ -126,10 +126,29 @@ margin-left: 45%;
     cursor: pointer;
     
 }
-.correct::after{
-    content: correct;
+
+#feedback{
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 4%;
+    padding-top: 2%;
+    color: rgb(46, 40, 119);
+    border-top: 1px solid black;
 }
-.hiding{
-    margin-top: 2%;
-    display: none;
+#initials{
+    
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.Submit{
+    background-color: rgb(68, 68, 158);
+    color: #fff;
+    cursor: pointer; 
+    background-color: rgb(20, 45, 100);
+    font-size: 20px;
+    border-radius: 10px;
+    margin-left: 45%;
+    margin-top: 5%;
+   
+
 }
