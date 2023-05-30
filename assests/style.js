@@ -23,7 +23,7 @@ answer: [
     question : "Javascript is an _______ language?",
     answer :
     [
-        {text:"Object-orientsd", correct:true},
+        {text:"Object-oriented", correct:true},
         {text:"Object-based", correct:false},
         {text:"Procedural", correct:false},
         {text:"None of above", correct:false}, 
@@ -151,20 +151,20 @@ function resetState(){
 
       } else {
         selectedbtn.classList.add("incorrect");
-        time -= 2;
+        time -= 5;
         feedbackEl1.textContent = "Wrong!"
         feedbackEl1.style.color= "red";
 
       }
       
     }
-Answerbuttons.addEventListener("click", selectAnswer);
+//Answerbuttons.addEventListener("click", selectAnswer);
 
     
 function ShowScore(){
 resetState();
-var QuestRes= QuestionEl.innerHTML= `You scored ${score} out of ${questions.length}!`;
-var AnsBtn= Answerbuttons.innerHTML ="Enter intials to submit score";
+QuestionEl.innerHTML= `You scored ${score} out of ${questions.length}!`;
+Answerbuttons.innerHTML ="Enter intials to submit score";
 initialEl.classList.remove("hide");
 
 }
@@ -195,15 +195,14 @@ Answerbuttons.addEventListener("click" , ()=>{
     SubmitEl.addEventListener("click", enterInitial);
     function enterInitial(event){
       event.preventDefault();
-      var initial = initialInputEl.value ;
-      localStorage.setitem("initial" , JSON.stringify(initial));
-     var savedInitial= JSON.parse(localStorage.getItem("initial"));
-    if(savedScore !== null){
-      initialInputEl.innerHTML = "savedInitial";
-    }
-     
-   
-  }
+      var initial = initialInputEl.value;
+      var savedInitial = JSON.parse(localStorage.getItem("initial"));
+      var user = {
+        initial: initial,
+        score: score
+      }
+      localStorage.setItem("user" , JSON.stringify(user));
+      }
 
 
   RestartEl.addEventListener("click", startQuiz);
