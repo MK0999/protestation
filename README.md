@@ -11,8 +11,10 @@ TA-Tara
 AskBcs app
 
 ## Screensh
-C:\Users\ASUS\bootcamp\Module-4\protestation\assests\Screenshot (19).png
 
+
+https://github.com/MK0999/protestation/blob/main/assests/Screenshot%20(19).png
+https://github.com/MK0999/protestation/blob/main/assests/Screenshot%20(20).png
 
 ## Links
 REPO:https://github.com/MK0999/protestation
