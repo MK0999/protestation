@@ -83,7 +83,7 @@ function FirstPage() {
   // set timer for quiz
   timerInterval = setInterval(function () {
     time--;
-    timeEl.textContent = time;
+    timeEl.textContent = "Time Left : "  + time;
     if (time <= 0) {
       clearInterval(timerInterval);
       ShowScore();
@@ -133,38 +133,46 @@ function resetState() {
 }
 
 
-
+var timer = 1;
 // Select answer from options
 function selectAnswer(e) {
   var selectedbtn = e.target;
   var isCorrect = selectedbtn.dataset.correct === "true";
   
   if (isCorrect) {
-    selectedbtn.classList.add("correct");
+    //selectedbtn.classList.add("correct");
     score++;
    feedbackEl1.textContent = "Right";
     feedbackEl1.style.color = "green";
     
 
   } else {
-    selectedbtn.classList.add("incorrect");
+   // selectedbtn.classList.add("incorrect");
     time -= 5;
     feedbackEl1.textContent = "Wrong!"
     feedbackEl1.style.color = "red";
 
   }
-  clearInterval(textTimer)
-
-textTimer = setInterval(function(){
-  feedbackEl1.classList.add ("hide");
-  },5000);
-  console.log("textTimer")
- 
+  clearInterval(feedbackTime); // Clear any existing interval
+  feedbackTime()
+  
+  //clearInterval(textTimer);
+  }
+ function feedbackTime(){
+    feedbackEl1.classList.remove("hide");
+    var interval = setInterval(function(){
+  if(timer > 0){
+  timer--;
+   }
+   else {
+     feedbackEl1.classList.add("hide");
+     clearInterval(interval);
+     timer = 1
+   }
+  
+  },1000)
 }
-textTimer = setInterval(function(){
-  feedbackEl1.classList.add ("hide");
-  },5000);
-  console.log("textTimer")
+  
 
 
  
