@@ -80,16 +80,14 @@ function FirstPage() {
   firstEl.classList.add("hide");
   showQuestion();
 
+  // set timer for quiz
   timerInterval = setInterval(function () {
     time--;
     timeEl.textContent = time;
     if (time <= 0) {
       clearInterval(timerInterval);
-
       ShowScore();
-
-
-    }
+        }
   }, 1000);
   console.log("time")
 }
@@ -100,13 +98,8 @@ function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
   time = 60;
-
-
-  FirstPage();
-
-
-
-  showQuestion();
+FirstPage();
+showQuestion();
 }
 
 // To enter question
@@ -139,16 +132,19 @@ function resetState() {
   }
 }
 
+
+
 // Select answer from options
 function selectAnswer(e) {
   var selectedbtn = e.target;
   var isCorrect = selectedbtn.dataset.correct === "true";
-  console.log("check")
+  
   if (isCorrect) {
     selectedbtn.classList.add("correct");
     score++;
-    feedbackEl1.textContent = "Right";
+   feedbackEl1.textContent = "Right";
     feedbackEl1.style.color = "green";
+    
 
   } else {
     selectedbtn.classList.add("incorrect");
@@ -157,8 +153,21 @@ function selectAnswer(e) {
     feedbackEl1.style.color = "red";
 
   }
+  clearInterval(textTimer)
 
+textTimer = setInterval(function(){
+  feedbackEl1.classList.add ("hide");
+  },5000);
+  console.log("textTimer")
+ 
 }
+textTimer = setInterval(function(){
+  feedbackEl1.classList.add ("hide");
+  },5000);
+  console.log("textTimer")
+
+
+ 
 //Answerbuttons.addEventListener("click", selectAnswer);
 
 
